@@ -83,3 +83,36 @@ e catch (Exception, writeln(e error))
 writeln
 
 # 8. Write a program that gives you ten tries to guess a random number from 1–100. If you would like, give a hint of “hotter” or “colder” after the first guess.
+"Guess a number between 1 and 100" println
+
+r := Random value(0, 100) ceil
+# uncomment for testing
+# writeln("The number is: ", r)
+prev := nil
+
+for (i, 1, 10, 1,
+    if (i != 1 , writeln("Guess again"))
+    input := File standardInput readLine asNumber
+    if (input isNan, Exception raise("That's not a Number."))
+
+    if (input != r,
+        if (prev == nil) then (
+            prev = input;
+            continue
+        ) elseif ((input - r) abs == (prev - r) abs) then (
+            writeln("...")
+        ) elseif ((input - r) abs < (prev - r) abs) then (
+            writeln("Hotter")
+        ) elseif ((input - r) abs > (prev - r) abs) then (
+            writeln("Colder")
+        )
+        prev = input,
+
+        break
+    )
+)
+
+if (input == r,
+    writeln("Got it!"),
+    writeln("Too many guesses.")
+)
