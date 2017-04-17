@@ -16,7 +16,6 @@ truthTest(0)
 truthTest(nil)
 writeln
 
-
 // How can you tell what slots a prototype supports?
 writeln("The Object type supports the following slots: \n", Object slotNames)
 writeln
